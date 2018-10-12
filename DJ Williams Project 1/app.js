@@ -18,36 +18,15 @@
 
 // // THE CORRECT CODE SNIPPET! BELOW!
 
-var canvas = document.querySelector('#canvas');
-var context = canvas.getContext('2d');//This is our 2d canvas space
-
-
-canvas.width = 1360;
-//This sets the size of the canvs to fill the inner width of the window size. Makes it RESPONSIVE!
-canvas.height = 800;
-//Same thing for height 
-
-
-
-function draw(time){
-    distance += calcOffset(time);
-    if(distance > image.width){distance=0;}
-    context.clearRect(0,0, canvas.width, canvas.height);
-    context.save();
-    context.translate(distance,0);
+window.onload = function() {
+    var canvas = document.querySelector('#canvas');
+    var context = canvas.getContext('2d');//This is our 2d canvas space
+    var img = this.document.getElementById("stars");
     context.drawImage(img, 0, 0);
-    context.drawImage(img, -img.width+1,0);
+};
 
-    requestAnimationFrame(draw);
 
-    context.restore();
-}
-function start(){
-    lastFrameRepaintTime = window.performance.now();
-    requestAnimationFrame(draw); 
-}
 
-start();
 
 var xPos = 0; // postion of box
 var yPos = 0;// postion of box

@@ -12,14 +12,21 @@
 canvas {
     border: 1px solid black;
     margin-left: 50px;
+    margin-top: 50px;
+
+    
+
 }
 
 body {
     margin: 0;
     background-color: rgba(0, 0, 128, 0.705);
+    display: inline-block;
+    justify-self: center;
+    align-self: center;
     /* overflow: hidden; */
 }
 
-img {
+#stars {
     display: none;
 }
