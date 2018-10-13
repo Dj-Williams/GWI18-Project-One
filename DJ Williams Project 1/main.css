@@ -9,24 +9,37 @@
     position: absolute; 
     margin-top: 80px; 
 } */
-canvas {
+
+.wrapper {
+    position: relative;
+    width: 1366px;
+    height: 768px;
+}
+
+.wrapper canvas {
     border: 1px solid black;
-    margin-left: 50px;
-    margin-top: 50px;
-
-    
-
+    margin-top: 8px;
+    position: absolute;
 }
 
 body {
     margin: 0;
     background-color: rgba(0, 0, 128, 0.705);
-    display: inline-block;
-    justify-self: center;
-    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /* overflow: hidden; */
 }
 
 #stars {
     display: none;
+    /* background: -webkit-canvas(animation) no-repeat 50% 50%; */
 }
+
+ #backgroundCanvas {
+    z-index: -50;
+}
+
+#gameCanvas {
+    z-index: 50;
+} 

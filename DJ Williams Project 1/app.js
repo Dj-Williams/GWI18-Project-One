@@ -18,21 +18,25 @@
 
 // // THE CORRECT CODE SNIPPET! BELOW!
 
+// This is code for the background canvas element!
+
+// var backgroundCanvas = document.getElementById("#backgroundCanvas");
+//     var backgroundContext = backgroundCanvas.getContext('2d');//This is our 2d canvas space
+//     var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html 
+
+// background.onload = function() {
+//     backgroundContext.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
+// }
+// End code for background canvas!
+
 window.onload = function() {
-    var canvas = document.querySelector('#canvas');
+    var canvas = document.querySelector('#gameCanvas');
     var context = canvas.getContext('2d');//This is our 2d canvas space
-    var img = this.document.getElementById("stars");
-    context.drawImage(img, 0, 0);
-};
-
-
-
+    var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html 
+    context.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
 
 var xPos = 0; // postion of box
 var yPos = 0;// postion of box
-
-context.fillRect(xPos,yPos,100,100);
-var bullet = context.fillRect(xPos,yPos,100,100);
 
 context.stroke();// draw rectangle
 
@@ -56,15 +60,24 @@ if(e.keyCode == 38){
     yPos-=70
 }
 
-
 // alert(e.keyCode);
 
 canvas.width=canvas.width; //this loops it all 
-context.fillRect(xPos,yPos,100,100); // this preserves the squares 
-context.stroke();
+context.fillRect(xPos,yPos,100,100); // this preserves the squares
+
 }
 
 document.onkeydown = move;
+};
+
+
+
+
+
+
+
+
+
 
 
 // Correct code Snippet above!
