@@ -18,19 +18,14 @@
 
 // // THE CORRECT CODE SNIPPET! BELOW!
 
-// This is code for the background canvas element!
 
-
-
-// End code for background canvas!
 
 window.onload = function() {
-    var backgroundContext = document.getElementById("backgroundCanvas").getContext('2d'); 
+    var backgroundContext = document.getElementById("backgroundCanvas").getContext('2d'); // This is code for the background canvas element!
+    
+    var gamecanvas = document.querySelector('#gameCanvas'); 
 
-    var canvas = document.querySelector('#gameCanvas');
-
-
-    var context = canvas.getContext('2d');//This is our 2d canvas space 
+    var gamecontext = gamecanvas.getContext('2d');//This is our game canvas space 
     
     var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html 
     
@@ -39,7 +34,7 @@ window.onload = function() {
 var xPos = 0; // postion of box
 var yPos = 0;// postion of box
 
-context.stroke();// draw rectangle
+gamecontext.stroke();// draw rectangle on the game canvas space.
 
 function move(e) { 
     // This is for the right directional key
@@ -63,8 +58,8 @@ if(e.keyCode == 38){
 
 // alert(e.keyCode);
 
-canvas.width=canvas.width; //this loops it all 
-context.fillRect(xPos,yPos,100,100); // this preserves the squares
+gamecanvas.width=gamecanvas.width; //this loops it all 
+gamecontext.fillRect(xPos,yPos,100,100); // this preserves the squares
 
 }
 
