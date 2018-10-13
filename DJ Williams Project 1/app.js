@@ -29,6 +29,29 @@ window.onload = function() {
     
     var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html 
     
+    function background() {
+        this.x = 0,
+        this.y = 0,
+        this.w = backgroundImg.width,
+        this.h = backgroundImg.height;
+        this.render = function() {
+            backgroundContext.drawImage(backgroundImg, this.x-=3, 0);
+            if(this.x <= -767){
+                this.x = 0;
+            }
+        }
+    }
+
+    var background = new background();
+
+    function animate (){
+        // backgroundContext.save();
+        backgroundContext.fillRect(0, 0, backgroundContext.canvas.width, backgroundContext.canvas.height);
+        background.render();
+        backgroundContext.restore();
+    }
+    var animateInterval = setInterval(animate, 50 ); 
+
     backgroundContext.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
 
 var xPos = 0; // postion of box
