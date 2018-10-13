@@ -20,20 +20,21 @@
 
 // This is code for the background canvas element!
 
-// var backgroundCanvas = document.getElementById("#backgroundCanvas");
-//     var backgroundContext = backgroundCanvas.getContext('2d');//This is our 2d canvas space
-//     var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html 
 
-// background.onload = function() {
-//     backgroundContext.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
-// }
+
 // End code for background canvas!
 
 window.onload = function() {
+    var backgroundContext = document.getElementById("backgroundCanvas").getContext('2d'); 
+
     var canvas = document.querySelector('#gameCanvas');
-    var context = canvas.getContext('2d');//This is our 2d canvas space
+
+
+    var context = canvas.getContext('2d');//This is our 2d canvas space 
+    
     var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html 
-    context.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
+    
+    backgroundContext.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
 
 var xPos = 0; // postion of box
 var yPos = 0;// postion of box

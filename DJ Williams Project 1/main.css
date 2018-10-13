@@ -10,13 +10,13 @@
     margin-top: 80px; 
 } */
 
-.wrapper {
+.canvasContainer {
     position: relative;
     width: 1366px;
     height: 768px;
 }
 
-.wrapper canvas {
+.canvasContainer canvas {
     border: 1px solid black;
     margin-top: 8px;
     position: absolute;
@@ -37,9 +37,9 @@ body {
 }
 
  #backgroundCanvas {
-    z-index: -50;
+    z-index: 1;
 }
 
 #gameCanvas {
-    z-index: 50;
+    z-index: 2;
 } 
