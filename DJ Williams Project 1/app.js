@@ -14,24 +14,34 @@
 // //         }
 // //     }
 
+// =============== BACKGROUND IMAGE CANVAS ===================================
+
 var backgroundContext = document.getElementById("backgroundCanvas").getContext('2d'); //This is code for the background canvas element!
+
+var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html and makes it an image element.
+
+backgroundContext.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
+
+// END =================== BACKGROUND IMAGE CANVAS ===========================
+
+// ===================== GAME Canvas! =============================
     
-    var gamecanvas = document.querySelector('#gameCanvas'); 
+var gamecanvas = document.querySelector('#gameCanvas'); 
 
-    var gamecontext = gamecanvas.getContext('2d'); //This is our game canvas space 
+var gamecontext = gamecanvas.getContext('2d'); //This is our game canvas space 
     
-    var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html and makes it an image element.
-
-    backgroundContext.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
+// END =================== Game CANVAS!! ===========================
 
 
-        // Player Parameters!
+//=============== Player Parameters! ========================
 
 var Player = {};
 Player_width = 220,
 Player_height = 172,
 Player_img = new Image();
 Player_img.src = 'assets/Spaceship.png';
+
+// END ================ Player Parameters ==================
 
 
 window.onload = function() {
