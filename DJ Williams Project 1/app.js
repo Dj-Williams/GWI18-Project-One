@@ -41,7 +41,46 @@ Player_height = 172,
 Player_img = new Image();
 Player_img.src = 'assets/Spaceship.png';
 
+Player = {
+    width: Player_width,
+    height: Player_height,
+    x: innerWidth/2 - Player_width/2,
+    y: innerHeight - (Player_height + 10),
+    Lives: 3,
+    draw: function(){
+        if (this.x <= 0){
+            this.x = 0;
+        } else if (this.x >= (innerWidth - this.width)){
+            this.x = (innerWidth - this.width);
+        }
+
+        if (this.y <= 0){
+            this.y = 0;
+        } else if (this.y >= (innerHeight - this.height)){
+            this.y = (innerHeight - this.height);
+        }
+        gamecontext.drawImage(Player_img, this.x, this.y, this.width, this.height);
+    }
+};
+
 // END ================ Player Parameters ==================
+
+// ================ Asteroid Parameters! ======================
+
+var asteroidReady = false;
+var asteroidImage = new Image();
+asteroidImage.onload = function (){
+    asteroidReady = true;
+};
+asteroidImage.src = "assets/AsteroidBrown.png";
+
+var asteroid = {
+    speed: 100,
+    x: 0,
+    y: 0,
+};
+
+// END ================ Asteroid Parameters! ==================
 
 
 window.onload = function() {
@@ -58,37 +97,30 @@ gamecontext.drawImage(Player_img, 0, 0)
 function move(Player) { 
     // This is for the right directional key
 if(Player.keyCode ==39){
-    xPos+=70
+    xPos+=50
 }
     // This is for the left directional key 
 if(Player.keyCode ==37){
-    xPos-=70
+    xPos-=50
 }
    // This is for the up directional key 
 
 if(Player.keyCode ==40){
-    yPos+=70 
+    yPos+=50 
 }
 // This is for the down directional key
 
 if(Player.keyCode == 38){
-    yPos-=70
+    yPos-=50
 }
 
 gamecanvas.width=gamecanvas.width; //this loops it all 
 gamecontext.drawImage(Player_img, xPos, yPos)
 }
 
+
 document.onkeydown = move;
 };
-
-
-
-
-
-
-
-
 
 
 
