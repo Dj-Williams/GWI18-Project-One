@@ -14,6 +14,7 @@
 // //         }
 // //     }
 
+
 // =============== BACKGROUND IMAGE CANVAS ===================================
 
 var backgroundContext = document.getElementById("backgroundCanvas").getContext('2d'); //This is code for the background canvas element!
@@ -47,20 +48,6 @@ Player = {
     x: innerWidth/2 - Player_width/2,
     y: innerHeight - (Player_height + 10),
     Lives: 3,
-    draw: function(){
-        if (this.x <= 0){
-            this.x = 0;
-        } else if (this.x >= (innerWidth - this.width)){
-            this.x = (innerWidth - this.width);
-        }
-
-        if (this.y <= 0){
-            this.y = 0;
-        } else if (this.y >= (innerHeight - this.height)){
-            this.y = (innerHeight - this.height);
-        }
-        gamecontext.drawImage(Player_img, this.x, this.y, this.width, this.height);
-    }
 };
 
 // END ================ Player Parameters ==================
