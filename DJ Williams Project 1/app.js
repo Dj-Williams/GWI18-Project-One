@@ -72,12 +72,9 @@ var asteroid = {
 
 window.onload = function() {
 
-
 var xPos = 0; // postion of the player ship!
 var yPos = 0;// this determines vertical postioning 
 
-
-gamecontext.stroke();// draw rectangle on the game canvas space.
 gamecontext.drawImage(Player_img, 0, 0)
 
 
