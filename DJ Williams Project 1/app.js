@@ -29,29 +29,41 @@ window.onload = function() {
     
     var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html and makes it an image element.
     
+    var backgroundOffset; //This determines the scroll direction!
 
+    var bckgrndVelocity = 50;
 
-    function backgroundScroll() {
-        var x = 0;
-        var speed = 5;
-        var bch = backgroundContext.height;
-        var bcw = backgroundContext.width;
+    function setBackgroundOffset() {
+        var offset = backgroundOffset + bckgrndVelocity
 
-        setInterval(backgroundScroll () {
-            backgroundContext.drawImage(backgroundImg, )
-        })
+        if (offset > 0 && offset < backgroundImg.width) {
+            backgroundOffset = offset;
+        } else {
+            backgroundOffset = 0;
+        }
     }
 
     
 
-    
+    function backgroundScroll() {
+        backgroundContext.translate(-backgroundOffset, 0);
+
+        backgroundContext.drawImage(backgroundImg, 0, 0);
+
+        backgroundContext.drawImage(backgroundImg, backgroundImg.width, 0);
+
+        backgroundContext.translate(backgroundOffset,0)
+    }
+
 
     backgroundContext.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
 
 var xPos = 0; // postion of box
 var yPos = 0;// postion of box
 
+
 gamecontext.stroke();// draw rectangle on the game canvas space.
+
 
 function move(e) { 
     // This is for the right directional key
@@ -76,7 +88,9 @@ if(e.keyCode == 38){
 // alert(e.keyCode);
 
 gamecanvas.width=gamecanvas.width; //this loops it all 
+gamecontext.fillStyle="white";
 gamecontext.fillRect(xPos,yPos,100,100); // this preserves the squares
+
 
 }
 
