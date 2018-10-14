@@ -14,11 +14,11 @@
 // //         }
 // //     }
 
-var backgroundContext = document.getElementById("backgroundCanvas").getContext('2d'); // This is code for the background canvas element!
+var backgroundContext = document.getElementById("backgroundCanvas").getContext('2d'); //This is code for the background canvas element!
     
     var gamecanvas = document.querySelector('#gameCanvas'); 
 
-    var gamecontext = gamecanvas.getContext('2d');//This is our game canvas space 
+    var gamecontext = gamecanvas.getContext('2d'); //This is our game canvas space 
     
     var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html and makes it an image element.
 
@@ -37,8 +37,8 @@ Player_img.src = 'assets/Spaceship.png';
 window.onload = function() {
 
 
-var xPos = 0; // postion of box
-var yPos = 0;// postion of box
+var xPos = 0; // postion of the player ship!
+var yPos = 0;// this determines vertical postioning 
 
 
 gamecontext.stroke();// draw rectangle on the game canvas space.
@@ -66,14 +66,13 @@ if(Player.keyCode == 38){
 }
 
 gamecanvas.width=gamecanvas.width; //this loops it all 
-gamecontext.fillRect(xPos,yPos,100,100); // this preserves the squares
-
+gamecontext.drawImage(Player_img, xPos, yPos)
 }
-
-
 
 document.onkeydown = move;
 };
+
+
 
 
 
