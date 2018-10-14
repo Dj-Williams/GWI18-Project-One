@@ -29,31 +29,7 @@ window.onload = function() {
     
     var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html and makes it an image element.
     
-    var backgroundOffset; //This determines the scroll direction!
-
-    var bckgrndVelocity = 50;
-
-    function setBackgroundOffset() {
-        var offset = backgroundOffset + bckgrndVelocity
-
-        if (offset > 0 && offset < backgroundImg.width) {
-            backgroundOffset = offset;
-        } else {
-            backgroundOffset = 0;
-        }
-    }
-
     
-
-    function backgroundScroll() {
-        backgroundContext.translate(-backgroundOffset, 0);
-
-        backgroundContext.drawImage(backgroundImg, 0, 0);
-
-        backgroundContext.drawImage(backgroundImg, backgroundImg.width, 0);
-
-        backgroundContext.translate(backgroundOffset,0)
-    }
 
 
     backgroundContext.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
