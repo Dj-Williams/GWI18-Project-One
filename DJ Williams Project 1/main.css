@@ -36,6 +36,10 @@ body {
     /* background: -webkit-canvas(animation) no-repeat 50% 50%; */
 }
 
+#spaceship{
+    display: none;
+}
+
  #backgroundCanvas {
     z-index: 1;
 }
