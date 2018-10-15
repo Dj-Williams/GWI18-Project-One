@@ -19,7 +19,7 @@
 
 var backgroundContext = document.getElementById("backgroundCanvas").getContext('2d'); //This is code for the background canvas element!
 
-// var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html and makes it an image element.
+var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html and makes it an image element.
 
 // backgroundContext.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
 
@@ -37,24 +37,21 @@ var gamecontext = gamecanvas.getContext('2d'); //This is our game canvas space
 
 // BEST PRACTICES REFACTOR ======= THE GAME LOOP! =================
 
-// ↓ This controls the flow of the game by getting a timestamp and constantly reupdating it. ↓
+// ↓ This controls the flow of the game by getting a timestamp and constantly reupadating it. ↓
 
-function engine(presentTime) {
-    var presentTime = presentTime - pastTime
+// var pastTime;
+// function main() {
+//     var presentTime = Date.now();
+//     var delta = (presentTime - pastTime) / 1000.0;
 
-    render();
-    update();
+//     update(delta);
+//     render();
 
-    pastTime = presentTime;
-    window.requestAnimationFrame(engine);
-};
-var pastTime = 0
-window.requestAnimationFrame(engine)
+//     pastTime = presentTime;
+//     requestAnimationFrame(main);
+// };
 
 // END =================== GAME LOOP!! ===========================
-
-var width
-var height
 
 
 //=============== Player Parameters! ========================
@@ -62,11 +59,7 @@ var height
 var Player = {};
 Player_width = 220,
 Player_height = 172,
-PlayerReady = false;
 Player_img = new Image();
-Player_img.onload = function() {
-    PlayerReady = true;
-}
 Player_img.src = 'assets/Spaceship.png';
 
 Player = {
@@ -81,95 +74,81 @@ Player = {
 
 // ================ Asteroid Parameters! ======================
 
-var asteroid = {};
-asteroid_width = 160,
-asteroid_height = 160;
-var asteroidReady = false;
-var asteroidImg = new Image();
-asteroidImg.onload = function (){
-    asteroidReady = true;
-};
-asteroidImg.src = "assets/AsteroidBrown.png";
+var asteroidArray = [],
+    asteroidIndex = 0,
+    asteroid_width = 35,
+    asteroid_height = 55,
+    asteroid_timer = 1000,
+    asteroidImage = new Image();
+    asteroidImage.src = "assets/AsteroidBrown.png";
 
-// var asteroid = {
-//     speed: 100,
-//     x: 100,
-//     y: 0,
-// };
+function asteroid(x, y, dx, dy, asteroidImage, asteroid_width, asteroid_height) {
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
+    this.img = asteroidImage;
+    this.width = asteroid_width;
+    this.height = asteroid_height;
+    asteroidIndex++;
+    asteroidArray[asteroidIndex] = this;
+    this.id = asteroidIndex;
+
+    gamecontext.drawImage(this.img, this.x, this.y, this.width, this.height);
+}
+
+function createAsteroid() {
+    var x = math.random() * (innerWidth - asteroid_width);
+    var y = 0; 
+    var dx = 3;
+    var dy = 3;
+
+    new asteroid(x, y, dx, dy, asteroidImage, asteroid_width, asteroid_height);
+}
 
 // END ================ Asteroid Parameters! ==================
 
 
+window.onload = function() {
 
-// var xPos = 0; // postion of the player ship!
-// var yPos = 0;// this determines vertical postioning 
+var xPos = 0; // postion of the player ship!
+var yPos = 0;// this determines vertical postioning 
 
-// gamecontext.drawImage(Player_img, 0, 0)
-
-
-var state = {
-    x: (width/ 2),
-    y: (height/ 2),
-    pressedKeys: {
-        left: false,
-        right: false,
-        up: false,
-        down: false
-    }
-}
-
-var mapKeys = {
-    39: 'right',
-    37: 'left',
-    40: 'up',
-    38: 'down',
-}
-
-function keypress(event) {
-    var key = mapKeys[event.keyCode]
-    state.pressedKeys[key] = true
-}
-
-function keyrelease(event) {
-    var key = mapKeys[event.keyCode]
-    state.pressedKeys[key] = false
-}
+gamecontext.drawImage(Player_img, 0, 0)
 
 
-// BEST PRACTICES REFACTOR ======= THE UPDATE FUNCTION! =================
-
-function update(presentTime) {
+function move(Player) { 
     // This is for the right directional key
-if(39 in keypress){
-    state.x += presentTime
+if(Player.keyCode ==39){
+    xPos+=50
 }
     // This is for the left directional key 
-if(37 in keypress){
-        state.x -= presentTime
+if(Player.keyCode ==37){
+    xPos-=50
 }
    // This is for the up directional key 
-if(40 in keypress){
-    state.y -= presentTime
+
+if(Player.keyCode ==40){
+    yPos+=50 
 }
 // This is for the down directional key
-if(38 in keypress){
-    state.y += presentTime
+
+if(Player.keyCode == 38){
+    yPos-=50
 }
+
+gamecanvas.width=gamecanvas.width; //this loops it all 
+gamecontext.drawImage(Player_img, xPos, yPos)
+createAsteroid();
 }
+
+
+document.onkeydown = move;
+};
 
 
 // BEST PRACTICES REFACTOR ======= THE RENDER FUNCTION! =================
 
-function render() {
-    gamecontext.clearRect(0, 0, width, height);
-    gamecontext.drawImage(Player_img, 0, 0, 220, 172,);
-    
-};
-
-
-engine();
-window.addEventListener("keypress", keypress, false)
-window.addEventListener("keyrelease", keyrelease, false)
-
+ 
 
 
