@@ -41,9 +41,18 @@ body {
 }
 
  #backgroundCanvas {
+    background-image: url('/assets/background.jpg'); 
+    background-repeat: repeat-x;
     z-index: 1;
+    background-size: cover;
+    animation: slide_background 20s linear infinite;
 }
 
 #gameCanvas {
     z-index: 2;
 } 
+
+@keyframes slide_background {
+    0% { background-position: 1366px }
+    100% {background-position: 0}
+}

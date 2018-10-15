@@ -21,7 +21,16 @@ var backgroundContext = document.getElementById("backgroundCanvas").getContext('
 
 var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html and makes it an image element.
 
-backgroundContext.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
+var bgGo = false;
+var bgImg = new Image();
+bgImg.onload = function() {
+    bgGo = true;
+};
+bgImg.src = backgroundImg;
+
+// backgroundContext.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
+
+
 
 // END =================== BACKGROUND IMAGE CANVAS ===========================
 
@@ -125,10 +134,11 @@ document.onkeydown = move;
 };
 
 
+// BEST PRACTICES REFACTOR ======= THE RENDER FUNCTION! =================
 
-
-
-// Correct code Snippet above!
+var render = function() {
+    if
+}
  
 
 
