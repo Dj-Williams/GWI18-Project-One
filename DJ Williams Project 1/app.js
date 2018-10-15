@@ -111,11 +111,12 @@ function createAsteroid() {
 
 window.onload = function() {
 
+    
 var xPos = 0; // postion of the player ship!
 var yPos = 0;// this determines vertical postioning 
 
 gamecontext.drawImage(Player_img, 0, 0)
-
+gamecontext.drawImage(asteroidImage, 1000, 100)
 
 function move(Player) { 
     // This is for the right directional key
@@ -139,12 +140,19 @@ if(Player.keyCode == 38){
 
 gamecanvas.width=gamecanvas.width; //this loops it all 
 gamecontext.drawImage(Player_img, xPos, yPos)
-createAsteroid();
+gamecontext.drawImage(asteroidImage, 900, 100)
+gamecontext.drawImage(asteroidImage, 500, 600)
+gamecontext.drawImage(asteroidImage, 700, 450)
+gamecontext.drawImage(asteroidImage, 850, 150)
+gamecontext.drawImage(asteroidImage, 350, 350)
+gamecontext.drawImage(asteroidImage, 200, 200)
 }
 
 
 document.onkeydown = move;
 };
+
+
 
 
 // BEST PRACTICES REFACTOR ======= THE RENDER FUNCTION! =================
