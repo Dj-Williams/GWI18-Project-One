@@ -35,21 +35,7 @@ var gamecontext = gamecanvas.getContext('2d'); //This is our game canvas space
     
 // END =================== Game CANVAS!! ===========================
 
-// BEST PRACTICES REFACTOR ======= THE GAME LOOP! =================
 
-// ↓ This controls the flow of the game by getting a timestamp and constantly reupadating it. ↓
-
-// var pastTime;
-// function main() {
-//     var presentTime = Date.now();
-//     var delta = (presentTime - pastTime) / 1000.0;
-
-//     update(delta);
-//     render();
-
-//     pastTime = presentTime;
-//     requestAnimationFrame(main);
-// };
 
 // END =================== GAME LOOP!! ===========================
 
@@ -155,7 +141,7 @@ document.onkeydown = move;
 
 
 
-// BEST PRACTICES REFACTOR ======= THE RENDER FUNCTION! =================
+
 
  
 
