@@ -19,14 +19,7 @@
 
 var backgroundContext = document.getElementById("backgroundCanvas").getContext('2d'); //This is code for the background canvas element!
 
-var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html and makes it an image element.
-
-var bgGo = false;
-var bgImg = new Image();
-bgImg.onload = function() {
-    bgGo = true;
-};
-bgImg.src = backgroundImg;
+// var backgroundImg = this.document.getElementById("stars"); //This is javascript grabbing the background image from html and makes it an image element.
 
 // backgroundContext.drawImage(backgroundImg, 0, 0); //This tells JS to draw the image in the canvas environment.
 
@@ -66,7 +59,11 @@ function main() {
 var Player = {};
 Player_width = 220,
 Player_height = 172,
+PlayerReady = false;
 Player_img = new Image();
+Player_img.onload = function() {
+    PlayerReady = true;
+}
 Player_img.src = 'assets/Spaceship.png';
 
 Player = {
@@ -137,7 +134,9 @@ document.onkeydown = move;
 // BEST PRACTICES REFACTOR ======= THE RENDER FUNCTION! =================
 
 var render = function() {
-    if
+    if (PlayerReady) {
+        gamecontext.drawImage(Player_img, 0, 0);
+    }
 }
  
 
