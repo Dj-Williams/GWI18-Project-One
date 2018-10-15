@@ -39,20 +39,21 @@ var gamecontext = gamecanvas.getContext('2d'); //This is our game canvas space
 
 // ↓ This controls the flow of the game by getting a timestamp and constantly reupdating it. ↓
 
-var pastTime;
-var engine = function () {
-    var presentTime = Date.now();
-    var delta = (presentTime - pastTime) / 1000.0;
-
-    update(delta);
+function engine(presentTime) {
+    var presentTime = presentTime - pastTime
     render();
-    drawText();
+    update(presentTime);
 
     pastTime = presentTime;
-    requestAnimationFrame(main);
+    window.requestAnimationFrame(engine);
 };
+var pastTime = 0
+window.requestAnimationFrame(engine)
 
 // END =================== GAME LOOP!! ===========================
+
+var width
+var height
 
 
 //=============== Player Parameters! ========================
@@ -98,59 +99,76 @@ asteroidImg.src = "assets/AsteroidBrown.png";
 // END ================ Asteroid Parameters! ==================
 
 
-// window.onload = function() {
 
-var xPos = 0; // postion of the player ship!
-var yPos = 0;// this determines vertical postioning 
+// var xPos = 0; // postion of the player ship!
+// var yPos = 0;// this determines vertical postioning 
 
 // gamecontext.drawImage(Player_img, 0, 0)
 
 
-var move = function (Player) { 
-    // This is for the right directional key
-if(Player.keyCode ==39){
-    xPos+=50
-}
-    // This is for the left directional key 
-if(Player.keyCode ==37){
-    xPos-=50
-}
-   // This is for the up directional key 
-
-if(Player.keyCode ==40){
-    yPos+=50 
-}
-// This is for the down directional key
-
-if(Player.keyCode == 38){
-    yPos-=50
+var state = {
+    x: (width/ 2),
+    y: (height/ 2),
+    pressedKeys: {
+        left: false,
+        right: false,
+        up: false,
+        down: false
+    }
 }
 
-document.onkeydown = move;
-
-gamecontext.drawImage(Player_img, xPos, yPos)
+var mapKeys = {
+    39: 'right',
+    37: 'left',
+    40: 'up',
+    38: 'down',
 }
+
+function keypress(event) {
+    var key = mapKeys[event.keyCode]
+    state.pressedKeys[key] = true
+}
+
+function keyrelease(event) {
+    var key = mapKeys[event.keyCode]
+    state.pressedKeys[key] = false
+}
+
 
 // BEST PRACTICES REFACTOR ======= THE UPDATE FUNCTION! =================
 
-var update = function () {
-    
+function update(movement) {
+    // This is for the right directional key
+if(state.pressedKeys.right){
+    state.x += movement
+}
+    // This is for the left directional key 
+if(state.pressedKeys.left){
+        state.x -= movement
+}
+   // This is for the up directional key 
+if(state.pressedKeys.up){
+    state.y -= movement
+}
+// This is for the down directional key
+if(state.pressedKeys.down){
+    state.y += movement
+}
 }
 
 
 // BEST PRACTICES REFACTOR ======= THE RENDER FUNCTION! =================
 
-var render = function() {
-    if (PlayerReady) {
-        gamecontext.drawImage(Player_img, xPos, yPos);
-    }
-    if (asteroidReady) {
-        gamecontext.drawImage(asteroidImg, asteroid.x, asteroid.y);
-    }
-
+function render() {
+    gamecontext.clearRect(0, 0, width, height);
+    gamecontext.drawImage(Player_img, 0, 0, 220, 172,);
+    
 };
 
+
 engine();
- 
+window.addEventListener("keypress", keypress, false)
+window.addEventListener("keyrelease", keyrelease, false)
+
 
 
