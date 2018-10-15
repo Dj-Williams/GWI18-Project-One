@@ -37,15 +37,16 @@ var gamecontext = gamecanvas.getContext('2d'); //This is our game canvas space
 
 // BEST PRACTICES REFACTOR ======= THE GAME LOOP! =================
 
-// ↓ This controls the flow of the game by getting a timestamp and constantly reupadating it. ↓
+// ↓ This controls the flow of the game by getting a timestamp and constantly reupdating it. ↓
 
 var pastTime;
-function main() {
+var engine = function () {
     var presentTime = Date.now();
     var delta = (presentTime - pastTime) / 1000.0;
 
     update(delta);
     render();
+    drawText();
 
     pastTime = presentTime;
     requestAnimationFrame(main);
@@ -78,31 +79,34 @@ Player = {
 
 // ================ Asteroid Parameters! ======================
 
+var asteroid = {};
+asteroid_width = 160,
+asteroid_height = 160;
 var asteroidReady = false;
-var asteroidImage = new Image();
-asteroidImage.onload = function (){
+var asteroidImg = new Image();
+asteroidImg.onload = function (){
     asteroidReady = true;
 };
-asteroidImage.src = "assets/AsteroidBrown.png";
+asteroidImg.src = "assets/AsteroidBrown.png";
 
-var asteroid = {
-    speed: 100,
-    x: 0,
-    y: 0,
-};
+// var asteroid = {
+//     speed: 100,
+//     x: 100,
+//     y: 0,
+// };
 
 // END ================ Asteroid Parameters! ==================
 
 
-window.onload = function() {
+// window.onload = function() {
 
 var xPos = 0; // postion of the player ship!
 var yPos = 0;// this determines vertical postioning 
 
-gamecontext.drawImage(Player_img, 0, 0)
+// gamecontext.drawImage(Player_img, 0, 0)
 
 
-function move(Player) { 
+var move = function (Player) { 
     // This is for the right directional key
 if(Player.keyCode ==39){
     xPos+=50
@@ -122,22 +126,31 @@ if(Player.keyCode == 38){
     yPos-=50
 }
 
-gamecanvas.width=gamecanvas.width; //this loops it all 
+document.onkeydown = move;
+
 gamecontext.drawImage(Player_img, xPos, yPos)
 }
 
+// BEST PRACTICES REFACTOR ======= THE UPDATE FUNCTION! =================
 
-document.onkeydown = move;
-};
+var update = function () {
+    
+}
 
 
 // BEST PRACTICES REFACTOR ======= THE RENDER FUNCTION! =================
 
 var render = function() {
     if (PlayerReady) {
-        gamecontext.drawImage(Player_img, 0, 0);
+        gamecontext.drawImage(Player_img, xPos, yPos);
     }
-}
+    if (asteroidReady) {
+        gamecontext.drawImage(asteroidImg, asteroid.x, asteroid.y);
+    }
+
+};
+
+engine();
  
 
 
