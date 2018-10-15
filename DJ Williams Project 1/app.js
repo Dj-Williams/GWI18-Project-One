@@ -41,8 +41,9 @@ var gamecontext = gamecanvas.getContext('2d'); //This is our game canvas space
 
 function engine(presentTime) {
     var presentTime = presentTime - pastTime
+
     render();
-    update(presentTime);
+    update();
 
     pastTime = presentTime;
     window.requestAnimationFrame(engine);
@@ -137,22 +138,22 @@ function keyrelease(event) {
 
 // BEST PRACTICES REFACTOR ======= THE UPDATE FUNCTION! =================
 
-function update(movement) {
+function update(presentTime) {
     // This is for the right directional key
-if(state.pressedKeys.right){
-    state.x += movement
+if(39 in keypress){
+    state.x += presentTime
 }
     // This is for the left directional key 
-if(state.pressedKeys.left){
-        state.x -= movement
+if(37 in keypress){
+        state.x -= presentTime
 }
    // This is for the up directional key 
-if(state.pressedKeys.up){
-    state.y -= movement
+if(40 in keypress){
+    state.y -= presentTime
 }
 // This is for the down directional key
-if(state.pressedKeys.down){
-    state.y += movement
+if(38 in keypress){
+    state.y += presentTime
 }
 }
 
