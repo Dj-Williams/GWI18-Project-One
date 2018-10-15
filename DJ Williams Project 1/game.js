@@ -35,20 +35,6 @@ Player = {
 
 // END ================ Player Parameters ==================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Animate = function ()
 
 
