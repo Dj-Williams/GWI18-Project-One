@@ -56,6 +56,8 @@ Player = {
     Lives: 3,
 };
 
+
+
 // END ================ Player Parameters ==================
 
 // ================ Asteroid Parameters! ======================
@@ -90,21 +92,24 @@ function createAsteroid() {
     var dy = 3;
 
     new asteroid(x, y, dx, dy, asteroidImage, asteroid_width, asteroid_height);
+
+
+
+
+
 }
 
-// END ================ Asteroid Parameters! ==================
 
 
-window.onload = function() {
 
-    
+
+
+
+//Controller
+
 var xPos = 0; // postion of the player ship!
 var yPos = 0;// this determines vertical postioning 
-
-gamecontext.drawImage(Player_img, 0, 0)
-gamecontext.drawImage(asteroidImage, 1000, 100)
-
-function move(Player) { 
+document.onkeydown = function (Player) { 
     // This is for the right directional key
 if(Player.keyCode ==39){
     xPos+=50
@@ -124,6 +129,16 @@ if(Player.keyCode == 38){
     yPos-=50
 }
 
+// END ================ Asteroid Parameters! ==================
+
+
+ Shapes = function() {
+
+gamecontext.drawImage(Player_img, 0, 0)
+gamecontext.drawImage(asteroidImage, 1000, 100)
+
+
+
 gamecanvas.width=gamecanvas.width; //this loops it all 
 gamecontext.drawImage(Player_img, xPos, yPos)
 gamecontext.drawImage(asteroidImage, 900, 100)
@@ -135,8 +150,23 @@ gamecontext.drawImage(asteroidImage, 200, 200)
 }
 
 
-document.onkeydown = move;
+
 };
+
+
+Animate = function ()
+{
+    gamecontext.clearRect(0,0, innerWidth,innerHeight)
+    requestAnimationFrame(Animate)
+
+
+Shapes();
+createAsteroid();
+
+}
+
+Animate();
+
 
 
 
